@@ -57,6 +57,17 @@
             };
         };
 
+
+    combos {
+        compatible = "zmk,combos";
+
+        combo_shift_enter {
+            timeout-ms = <50>;
+            key-positions = <51 60>;
+            bindings = <&shft_ent>;
+        };
+    };
+
     macros {
         personal_email: personal_email {
             compatible = "zmk,behavior-macro";
@@ -70,6 +81,16 @@
             label = "SPAM_EMAIL";
             #binding-cells = <0>;
             bindings = <&kp S &kp P &kp A &kp M &kp E &kp M &kp A &kp I &kp L &kp AT &kp G &kp M &kp A &kp I &kp L &kp DOT &kp C &kp O &kp M>;
+        };
+
+        shft_ent: shift_enter_macro {
+            compatible = "zmk,behavior-macro";
+            #binding-cells = <0>;
+            bindings
+                = <&macro_press &kp LSHFT>
+                , <&macro_tap &kp ENTER>
+                , <&macro_release &kp LSHFT>
+                ;
         };
     };
 
@@ -86,7 +107,7 @@
         layer0 {
             bindings = <
 &gresc      &kp N1     &kp N2        &kp N3        &kp N4  &kp N5       &kp UP_ARROW     &kp N6     &kp N7     &kp N8     &kp N9           &kp N0      &kp DELETE
-&kp TAB     &kp Q      &kp W         &kp E         &kp R   &kp T        &kp DOWN_ARROW   &kp Y      &kp U      &kp I      &kp O            &kp P       &kp LBKT
+&kp TAB     &mt LS(LALT) Q &kp W         &kp E         &kp R   &kp T        &kp DOWN_ARROW   &kp Y      &kp U      &kp I      &kp O            &kp P       &kp LBKT
 &kp LCTRL  &kp A      &kp S         &kp D         &kp F   &kp G        &kp LEFT_ARROW   &kp H      &kp J      &kp K      &kp L            &semi_colon    &kp squote_dquote
 &kp LSHFT   &kp Z      &kp X         &kp C         &kp V   &kp B        &kp RIGHT_ARROW  &kp N      &kp M      &kp COMMA  &kp DOT          &kp FSLH    &mt LSHIFT ENTER
 &kp C_MUTE  &kp LCTRL  &kp LEFT_GUI  &kp LEFT_ALT  &kp UNDER   &kp SPACE    &kp ENTER        &kp BACKSPACE  &mo 1  &kp DELETE      &none  &kp RALT
@@ -99,10 +120,10 @@
         layer_1 {
             bindings = <
 &kp F1      &kp F2           &kp F3          &kp F4           &kp F5           &kp F6            &mmv MOVE_UP     &kp F7           &kp F8           &kp F9      &kp F10    &kp F11   &kp F12
-&trans      &trans           &trans          &kp LBKT         &kp RBKT         &kp EQUAL            &mmv MOVE_DOWN   &trans           &trans           &kp UP      &trans     &trans    &trans
+&trans      &trans           &trans          &kp LBKT         &kp RBKT         &kp EQUAL            &mmv MOVE_DOWN   &trans           &kp PAGE_UP           &kp UP      &kp PAGE_DOWN     &trans    &kp RBKT
 &trans      &kp LT           &kp GT          &kp LPAR         &kp RPAR         &kp MINUS            &mmv MOVE_LEFT   &trans           &kp LEFT         &kp DOWN    &kp RIGHT  &trans    &trans
 &trans      &rgb_ug RGB_OFF  &rgb_ug RGB_ON  &kp LBRC         &kp RBRC         &kp PLUS   &mmv MOVE_RIGHT  &rgb_ug RGB_BRI  &rgb_ug RGB_BRD  &kp INSERT  &kp F11    &kp F12   &trans
-&kp C_MUTE  &trans           &trans          &trans        &trans        &trans          &mkp LCLK        &trans           &trans           &trans      &trans     &trans
+&kp C_MUTE  &trans           &trans          &trans        &mo 2        &trans          &mkp LCLK        &trans           &trans           &trans      &trans     &trans
             >;
 
             display-name = "SYMBOL";
