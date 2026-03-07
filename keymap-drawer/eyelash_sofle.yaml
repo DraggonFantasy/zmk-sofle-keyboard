@@ -15,7 +15,7 @@ layers:
   - {t: '0', s: )}
   - $$mdi:backspace-reverse-outline$$
   - $$mdi:keyboard-tab$$
-  - {t: Q, h: 'Sft+$$mdi:apple-keyboard-option$$'}
+  - '&q_altshift'
   - W
   - E
   - R
@@ -38,8 +38,8 @@ layers:
   - J
   - K
   - L
-  - '&semi_colon'
-  - squote dquote
+  - '&smi_colon'
+  - '&squote_dquote'
   - $$mdi:apple-keyboard-shift$$
   - Z
   - X
