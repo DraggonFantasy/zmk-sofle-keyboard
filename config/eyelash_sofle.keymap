@@ -39,30 +39,30 @@
             };
 
             smi_colon: semi_colon {
-              compatible = "zmk,behavior-hold-tap";
-              #binding-cells = <0>;
-              flavor = "tap-preferred";
-              tapping-term-ms = <180>;
-              quick-tap-ms = <180>;
-              bindings = <&kp SEMI>, <&kp COLON>;  /* ;  /  : */
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <0>;
+                flavor = "tap-preferred";
+                tapping-term-ms = <180>;
+                quick-tap-ms = <180>;
+                bindings = <&kp SEMI &kp COLON>;
             };
-        
+            
             squote_dquote: squote_dquote {
-              compatible = "zmk,behavior-hold-tap";
-              #binding-cells = <0>;
-              flavor = "tap-preferred";
-              tapping-term-ms = <180>;
-              quick-tap-ms = <180>;
-              bindings = <&kp SQT>, <&kp DQT>;     /* '  /  " */
+                compatible = "zmk,behavior-hold-tap";
+                #binding-cells = <0>;
+                flavor = "tap-preferred";
+                tapping-term-ms = <180>;
+                quick-tap-ms = <180>;
+                bindings = <&kp SQT &kp DQT>;
             };
-
+            
             q_altshift: q_altshift {
                 compatible = "zmk,behavior-hold-tap";
                 #binding-cells = <0>;
                 flavor = "tap-preferred";
                 tapping-term-ms = <200>;
                 quick-tap-ms = <200>;
-                bindings = <&kp Q>, <&kp LS(LALT)>;
+                bindings = <&kp LS(LALT) &kp Q>;
             };
         };
 
