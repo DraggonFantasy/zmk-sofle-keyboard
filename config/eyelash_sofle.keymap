@@ -38,22 +38,13 @@
             mods = <(MOD_LGUI|MOD_LSFT|MOD_RGUI|MOD_RSFT)>;
         };
 
-        smi_colon: semi_colon {
+        generic_ht_kp: generic_ht_kp {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
+            #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <180>;
             quick-tap-ms = <180>;
-            bindings = <&hold_colon &tap_semi>;
-        };
-
-        squote_dquote: squote_dquote {
-            compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <0>;
-            flavor = "tap-preferred";
-            tapping-term-ms = <180>;
-            quick-tap-ms = <180>;
-            bindings = <&hold_dqt &tap_sqt>;
+            bindings = <&kp &kp>;
         };
     };
 
@@ -69,29 +60,6 @@
     };
 
     macros {
-        tap_semi: tap_semi {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp SEMI>;
-        };
-
-        hold_colon: hold_colon {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp COLON>;
-        };
-
-        tap_sqt: tap_sqt {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp SQT>;
-        };
-
-        hold_dqt: hold_dqt {
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings = <&kp DQT>;
-        };
 
         personal_email: personal_email {
             compatible = "zmk,behavior-macro";
@@ -132,7 +100,7 @@
             bindings = <
 &gresc      &kp N1     &kp N2        &kp N3        &kp N4  &kp N5       &kp UP_ARROW     &kp N6     &kp N7     &kp N8     &kp N9           &kp N0      &kp DELETE
 &kp TAB     &mt LS(LALT) Q &kp W         &kp E         &kp R   &kp T        &kp DOWN_ARROW   &kp Y      &kp U      &kp I      &kp O            &kp P       &kp LBKT
-&kp LCTRL  &kp A      &kp S         &kp D         &kp F   &kp G        &kp LEFT_ARROW   &kp H      &kp J      &kp K      &kp L            &smi_colon    &squote_dquote
+&kp LCTRL  &kp A      &kp S         &kp D         &kp F   &kp G        &kp LEFT_ARROW   &kp H      &kp J      &kp K      &kp L            &generic_ht_kp COLON SEMI    &generic_ht_kp DQT SQT
 &kp LSHFT   &kp Z      &kp X         &kp C         &kp V   &kp B        &kp RIGHT_ARROW  &kp N      &kp M      &kp COMMA  &kp DOT          &kp FSLH    &mt LSHIFT ENTER
 &kp C_MUTE  &kp LCTRL  &kp LEFT_GUI  &kp LEFT_ALT  &kp UNDER   &kp SPACE    &kp ENTER        &kp BACKSPACE  &mo 1  &kp DELETE      &none  &kp RALT
             >;
