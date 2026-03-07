@@ -15,7 +15,7 @@ layers:
   - {t: '0', s: )}
   - $$mdi:backspace-reverse-outline$$
   - $$mdi:keyboard-tab$$
-  - '&q_altshift'
+  - {t: Q, h: 'Sft+$$mdi:apple-keyboard-option$$'}
   - W
   - E
   - R
