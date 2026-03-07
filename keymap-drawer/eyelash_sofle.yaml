@@ -38,8 +38,8 @@ layers:
   - J
   - K
   - L
-  - '&smi_colon'
-  - '&squote_dquote'
+  - {t: ;, h: ':', s: ':'}
+  - {t: '''', h: '"', s: '"'}
   - $$mdi:apple-keyboard-shift$$
   - Z
   - X
