@@ -135,16 +135,14 @@ docker exec -w /workspaces/zmk/app -it <container-id> /bin/bash
 
 ```shell
 # Build firmware
-west build -d build/left -p -b eyelash_sofle_left -- -DSHIELD=nice_view -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/" -DZMK_CONFIG="/workspaces/zmk-config/"
-west build -d build/right -p -b eyelash_sofle_right -- -DSHIELD=nice_view_custom -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/"
-west build -d build/studio_left -p -b eyelash_sofle_left -- -DSHIELD=nice_view -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/" -DCONFIG_ZMK_STUDIO=y -DCONFIG_ZMK_STUDIO_LOCKING=n -DZMK_CONFIG="/workspaces/zmk-config/"
+west build -d build/left -p -b eyelash_sofle_left -S studio-rpc-usb-uart -- -DSHIELD=nice_view -DCONFIG_ZMK_STUDIO=y -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/" -DZMK_CONFIG="/workspaces/zmk-config/"
+west build -d build/right -p -b eyelash_sofle_right -- -DSHIELD=nice_view -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/" -DZMK_CONFIG="/workspaces/zmk-config/"
 west build -d build/settings_reset_left -p -b eyelash_sofle_left -- -DSHIELD=settings_reset -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/" -DZMK_CONFIG="/workspaces/zmk-config/"
 west build -d build/settings_reset_right -p -b eyelash_sofle_right -- -DSHIELD=settings_reset -DZMK_EXTRA_MODULES="/workspaces/zmk-modules/" -DZMK_CONFIG="/workspaces/zmk-config/"
 
 # Copy firmware to build/ directory
 cp build/left/zephyr/zmk.uf2 /workspaces/zmk-modules/build/nice_view-eyelash_sofle_left-zmk.uf2
-cp build/right/zephyr/zmk.uf2 /workspaces/zmk-modules/build/nice_view_custom-eyelash_sofle_right-zmk.uf2
-cp build/studio_left/zephyr/zmk.uf2 /workspaces/zmk-modules/build/eyelash_sofle_studio_left.uf2
+cp build/right/zephyr/zmk.uf2 /workspaces/zmk-modules/build/nice_view-eyelash_sofle_right-zmk.uf2
 cp build/settings_reset_left/zephyr/zmk.uf2 /workspaces/zmk-modules/build/settings_reset-eyelash_sofle_left-zmk.uf2
 cp build/settings_reset_right/zephyr/zmk.uf2 /workspaces/zmk-modules/build/settings_reset-eyelash_sofle_right-zmk.uf2
 ```
@@ -160,13 +158,14 @@ When flashing, it is very important to follow this exact sequence:
 **Left side**
 
 1. (Optional) Reset all settings `settings_reset-eyelash_sofle_left-zmk.uf2` (you will have to pair your keyboard again)
-2. Flash the new keymap `nice_view-eyelash_sofle_left-zmk.uf2`
-3. (Optional) Enable ZMK Studio support by flashing `eyelash_sofle_studio_left.uf2`
+2. Flash the new keymap `nice_view-eyelash_sofle_left-zmk.uf2` (ZMK Studio support is included)
 
 **Right side**
 
-4. (Optional) Reset all settings `settings_reset-eyelash_sofle_right-zmk.uf2`. If you've reset the left side, you'll also have to reset the right side so that both sides can find each other
-5. Flash the new keymap `nice_view_custom-eyelash_sofle_right-zmk.uf2`
+3. (Optional) Reset all settings `settings_reset-eyelash_sofle_right-zmk.uf2`. If you've reset the left side, you'll also have to reset the right side so that both sides can find each other
+4. Flash the new keymap `nice_view-eyelash_sofle_right-zmk.uf2`
+
+To edit the keymap, connect the left half over USB, select USB output, unlock Studio with the `&studio_unlock` key on layer 2 (the leftmost key of the second row), and open [ZMK Studio](https://zmk.studio). Studio changes are stored on the keyboard; use **Restore Stock Settings** in Studio before expecting later `.keymap` changes to take effect.
 
 For more context, these Reddit threads are helpful (they apply to the Corne but the Sofle is from the same vendor):
 

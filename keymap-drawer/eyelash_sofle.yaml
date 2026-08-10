@@ -144,7 +144,7 @@ layers:
   - F9
   - F10
   - {t: '$$mdi:transfer$$', type: trans}
-  - {t: '$$mdi:transfer$$', type: trans}
+  - Studio Unlock
   - $$mdi:bluetooth-off$$
   - BT CLR ALL
   - '&spam_email'

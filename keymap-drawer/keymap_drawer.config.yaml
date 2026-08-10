@@ -240,6 +240,8 @@ parse_config:
       shifted: $$mdi:usb$$
       tap: $$mdi:toggle-switch$$
       hold: $$mdi:bluetooth$$
+    # ZMK Studio
+    "&studio_unlock": Studio Unlock
     "&bt BT_PRV":
       shifted: $$mdi:bluetooth-connect$$
       tap: ""
