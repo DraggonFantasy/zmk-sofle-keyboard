@@ -11,9 +11,55 @@ jobs:
   draw:
     uses: caksoylar/keymap-drawer/.github/workflows/draw-zmk.yml@main
     permissions:
-      contents: write
+      contents: read
     with:
-      commit_message: "[Draw] ${{ github.event.head_commit.message }}"
-      destination: "commit"
+      artifact_name: "drawings"
+      destination: "artifact"
       fail_on_error: ${{ fromJSON(true) }}
       config_path: "keymap-drawer/keymap_drawer.config.yaml"
+
+  render-and-commit:
+    needs: draw
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Download keymap-drawer output
+        uses: actions/download-artifact@v7
+        with:
+          name: drawings
+          path: keymap-drawer
+
+      - name: Install Inkscape
+        shell: bash
+        run: |
+          if ! command -v inkscape >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install --yes --no-install-recommends inkscape
+          fi
+
+      - name: Render PNG previews
+        shell: bash
+        run: |
+          shopt -s nullglob
+          svg_files=(keymap-drawer/*.svg)
+          if (( ${#svg_files[@]} == 0 )); then
+            echo "No keymap SVG files were produced" >&2
+            exit 1
+          fi
+
+          for svg in "${svg_files[@]}"; do
+            inkscape "$svg" \
+              --export-filename="${svg%.svg}.png" \
+              --export-background="#ffffff" \
+              --export-background-opacity=255
+          done
+
+      - name: Commit updated drawings
+        uses: stefanzweifel/git-auto-commit-action@v7
+        with:
+          file_pattern: "keymap-drawer/*.svg keymap-drawer/*.yaml keymap-drawer/*.png"
+          commit_message: "[Draw] ${{ github.event.head_commit.message }}"

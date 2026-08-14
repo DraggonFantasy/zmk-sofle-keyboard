@@ -9,3 +9,5 @@ zephyr/
 .DS_Store
 mario-peripheral-animation/
 config/eyelash_sofle.private.keymap
+__pycache__/
+*.py[cod]
